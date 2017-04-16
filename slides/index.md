@@ -8,6 +8,8 @@
 
 ### ![image](images/iHearFsharp1.png)
 
+> Third most loved language in the SO 2016 Developer Survey. 
+
 *** 
 
 #### FP Envy
@@ -48,10 +50,27 @@
 * Immutability by default
 * Very good type inference with white-space based syntax
 * Light-weight type-system suitable for domain/type driven design
+* REPL
+* Great Visual Studio and VSCode integrations
+
 
 ***
 
-### Libraries
+### Libraries/Tools
+
+* All the .NET BCL and 
+* Some personal picks
+    - [Paket](https://fsprojects.github.io/Paket/index.html)
+    - [Fake](http://fsharp.github.io/FAKE/)
+    - [Expecto](https://github.com/haf/expecto)
+    - [FSharp.Data](http://fsharp.github.io/FSharp.Data/) and [SQLProvider](http://fsprojects.github.io/SQLProvider/)
+    - [MathNet.Numerics](https://numerics.mathdotnet.com/)
+    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/)
+    - [Oxyplot](http://www.oxyplot.org/)
+    - [Argu](http://fsprojects.github.io/Argu/) and [CommandLine](https://github.com/gsscoder/commandline)
+    - [BenchmarkDotNet](http://benchmarkdotnet.org/)
+    - [FileHelpers](http://www.filehelpers.net/)
+
 
 ***
 
