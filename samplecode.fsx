@@ -32,3 +32,7 @@ let dtAndNum =
     |> Seq.take 2
 
 printfn "%A" dtAndNum
+
+module TestModule =
+    let newfunc x =
+        x + "a"
