@@ -4,5 +4,5 @@ nuget FsReveal
 nuget FAKE
 nuget Suave
 nuget FSharp.Data 
-nuget Argu framework: net462
+nuget Argu framework: net46
 
