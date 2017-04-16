@@ -120,8 +120,8 @@
 * Docs:
     * [.NET Docs](https://docs.microsoft.com/en-us/dotnet/articles/fsharp/)
     * [F# for Fun & Profit](https://fsharpforfunandprofit.com/)
-    * [Expert F# 4.0](http://www.apress.com/us/book/9781484207413)
 * Books:
+    * [Expert F# 4.0](http://www.apress.com/us/book/9781484207413)
     * [Learn F#](https://www.manning.com/books/learn-fsharp)
     * [Functional Concurrency in .NET](https://www.manning.com/books/functional-concurrency-in-dotnet)
 * Slack:
