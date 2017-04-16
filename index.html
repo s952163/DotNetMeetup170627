@@ -68,9 +68,13 @@
         <div class="slides">
             <section >
 <h3><img src="images/iHearFsharp1.png" alt="image" /></h3>
+<blockquote>
+<p>Third most loved language in the SO 2016 Developer Survey.</p>
+</blockquote>
 </section>
 <section >
-<h3>FP envy</h3>
+<h4>FP Envy</h4>
+<p><img src="https://media.giphy.com/media/OcsIqNQaWLCBa/giphy.gif" alt="&quot;FP Envy&quot;" /></p>
 <ul>
 <li>Generics</li>
 <li>LINQ</li>
@@ -78,7 +82,6 @@
 <li>Tuples</li>
 <li>Pattern Matching</li>
 </ul>
-<p>"I want what they have!"</p>
 </section>
 <section >
 <blockquote>
@@ -103,7 +106,7 @@
 <td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">let</span> <span onmouseout="hideTip(event, 'fs1', 1)" onmouseover="showTip(event, 'fs1', 1)" class="i">nums</span> <span class="o">=</span> [<span class="n">1</span> <span class="o">..</span> <span class="n">10</span>]  
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs2', 2)" onmouseover="showTip(event, 'fs2', 2)" class="f">sumx2</span> <span onmouseout="hideTip(event, 'fs3', 3)" onmouseover="showTip(event, 'fs3', 3)" class="i">xs</span> <span class="o">=</span>  
     <span onmouseout="hideTip(event, 'fs3', 4)" onmouseover="showTip(event, 'fs3', 4)" class="i">xs</span> <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 5)" onmouseover="showTip(event, 'fs4', 5)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs5', 6)" onmouseover="showTip(event, 'fs5', 6)" class="f">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs6', 7)" onmouseover="showTip(event, 'fs6', 7)" class="i">x</span> <span class="k">-&gt;</span> <span onmouseout="hideTip(event, 'fs6', 8)" onmouseover="showTip(event, 'fs6', 8)" class="i">x</span> <span class="o">*</span> <span onmouseout="hideTip(event, 'fs6', 9)" onmouseover="showTip(event, 'fs6', 9)" class="i">x</span>)  
-    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="f">sum</span>
+       <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs4', 10)" onmouseover="showTip(event, 'fs4', 10)" class="t">List</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs7', 11)" onmouseover="showTip(event, 'fs7', 11)" class="f">sum</span>
 <span class="k">let</span> <span onmouseout="hideTip(event, 'fs8', 12)" onmouseover="showTip(event, 'fs8', 12)" class="i">xs&#39;</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs2', 13)" onmouseover="showTip(event, 'fs2', 13)" class="f">sumx2</span> <span onmouseout="hideTip(event, 'fs1', 14)" onmouseover="showTip(event, 'fs1', 14)" class="i">nums</span>
 
 <span class="k">type</span> <span onmouseout="hideTip(event, 'fs9', 15)" onmouseover="showTip(event, 'fs9', 15)" class="t">MyRec</span> <span class="o">=</span> {
@@ -120,7 +123,37 @@
 </table>
 </section>
 <section >
-<h3>Libraries</h3>
+<h3>What?</h3>
+<p><img src="https://media3.giphy.com/media/5wWf7H89PisM6An8UAU/giphy.gif" alt="Huh?" /></p>
+<ul>
+<li>No nulls</li>
+<li>Immutability by default</li>
+<li>Very good type inference with white-space based syntax</li>
+<li>Light-weight type-system suitable for domain/type driven design</li>
+<li>REPL</li>
+<li>Great Visual Studio and VSCode integrations</li>
+</ul>
+</section>
+<section >
+<h3>Libraries/Tools</h3>
+<ul>
+<li>All the .NET BCL and</li>
+<li>
+Some personal picks
+<ul>
+<li><a href="https://fsprojects.github.io/Paket/index.html">Paket</a></li>
+<li><a href="http://fsharp.github.io/FAKE/">Fake</a></li>
+<li><a href="https://github.com/haf/expecto">Expecto</a></li>
+<li><a href="http://fsharp.github.io/FSharp.Data/">FSharp.Data</a> and <a href="http://fsprojects.github.io/SQLProvider/">SQLProvider</a></li>
+<li><a href="https://numerics.mathdotnet.com/">MathNet.Numerics</a></li>
+<li><a href="http://reedcopsey.github.io/Gjallarhorn/">Gjallarhorn</a></li>
+<li><a href="http://www.oxyplot.org/">Oxyplot</a></li>
+<li><a href="http://fsprojects.github.io/Argu/">Argu</a> and <a href="https://github.com/gsscoder/commandline">CommandLine</a></li>
+<li><a href="http://benchmarkdotnet.org/">BenchmarkDotNet</a></li>
+<li><a href="http://www.filehelpers.net/">FileHelpers</a></li>
+</ul>
+</li>
+</ul>
 </section>
 <section >
 <h3>Resources</h3>
