@@ -60,33 +60,87 @@
 
 * All the .NET BCL and 
 * Some personal picks
-    - [Paket](https://fsprojects.github.io/Paket/index.html)
-    - [Fake](http://fsharp.github.io/FAKE/)
-    - [Expecto](https://github.com/haf/expecto)
-    - [FSharp.Data](http://fsharp.github.io/FSharp.Data/) and [SQLProvider](http://fsprojects.github.io/SQLProvider/)
-    - [MathNet.Numerics](https://numerics.mathdotnet.com/)
-    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/)
-    - [Oxyplot](http://www.oxyplot.org/)
-    - [Argu](http://fsprojects.github.io/Argu/) and [CommandLine](https://github.com/gsscoder/commandline)
-    - [BenchmarkDotNet](http://benchmarkdotnet.org/)
-    - [FileHelpers](http://www.filehelpers.net/)
+    - [Paket](https://fsprojects.github.io/Paket/index.html): dependency management
+    - [Fake](http://fsharp.github.io/FAKE/): build tool
+    - [Expecto](https://github.com/haf/expecto): testing
+    - [FSharp.Data](http://fsharp.github.io/FSharp.Data/) and [SQLProvider](http://fsprojects.github.io/SQLProvider/): typed data access
+    - [MathNet.Numerics](https://numerics.mathdotnet.com/): numerical/statistical computations
+    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/): managing mutable state and signals
+    - [Oxyplot](http://www.oxyplot.org/): plotting library
+    - [Argu](http://fsprojects.github.io/Argu/) and [CommandLine](https://github.com/gsscoder/commandline): command line parsers
+    - [BenchmarkDotNet](http://benchmarkdotnet.org/): easy micro benchmarking
+    - [FileHelpers](http://www.filehelpers.net/): processing delimited files
+
+---
+
+### ![fake](images/fake.png)
+* **Fake:** F# Make, a build tool for .NET  
+* Integrated DSL in F#  
+* Run tests, add assembly info, release to nuget via Paket  
+
+### ![paket](images/paket-logo.png)  
+* **Paket:** dependency manager for .NET 
+* Integrated with nuget but much more reliable
+* Can reference source files, github
+
+---
+
+## Typed representation of an arbitrary csv file in 3 lines
+
+    [<Literal>]
+    let csvFile = @"c:\tmp\testDeedle.csv"
+    type CsvTest = CsvProvider<csvFile>
+    let sample = CsvTest.GetSample()
+    sample.Headers // val it : string [] option = Some [|"Date"; "Portfolio"; "BarraID"; "Ret"|]
+    
+    //val dtAndNum : seq<System.DateTime * decimal>
+    let dtAndNum = 
+        sample.Rows 
+        |> Seq.map (fun x -> (x.Date,x.Ret))
+        |> Seq.take 2
+
+    printfn "%A" dtAndNum
+    seq [(2016/10/11 00:00:00, 0.0059880M);
+         (2016/10/12 00:00:00, -0.003293M)]
+
+* SqlProvider works as a mini-ORM providing the same functionality for databases
+
+--- 
+### SQLProvider
+
+---
+
+### Argu sample
+
 
 
 ***
 
 ### Resources
+* Docs:
+    * [.NET Docs](https://docs.microsoft.com/en-us/dotnet/articles/fsharp/)
+    * [F# for Fun & Profit](https://fsharpforfunandprofit.com/)
+    * [Expert F# 4.0](http://www.apress.com/us/book/9781484207413)
+* Books:
+    * [Learn F#](https://www.manning.com/books/learn-fsharp)
+    * [Functional Concurrency in .NET](https://www.manning.com/books/functional-concurrency-in-dotnet)
+* Slack:
+    * [FSharp Slack](http://foundation.fsharp.org/join)
+    * [F# channel on FP Slack](https://functionalprogramming.slack.com)
+* Videos:
+    * [Channel 9: Intro to F#](https://channel9.msdn.com/blogs/pdc2008/tl11)
+    * [Channel 9: F# in VS2017](https://channel9.msdn.com/blogs/pdc2008/tl11)
+    * [Functional Design Patterns](https://youtu.be/E8I19uA-wGY)
 
-* Docs
-
-* Books
-
-* Slack
-
-* Videos
 
 *** 
 
-### Show me the code
-![whatever](images/fsharp256.png)
+### Coding in F#
+
+![whatever](images/favicon-160x160.png)    
+
+<iframe src="//giphy.com/embed/aq6Thivv9V9lu?html5=true" width="480" height="272.23880597014925" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/aq6Thivv9V9lu"></a></p>
+
+<! ### ![Yes!](https://media.giphy.com/media/aq6Thivv9V9lu/giphy.gif)>
 
 ***
