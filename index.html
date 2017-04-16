@@ -63,6 +63,17 @@
 <div class="tip" id="fs15">val id : x:&#39;T -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.Operators.id</div>
 <div class="tip" id="fs16">val employee2 : MyRec<br /><br />Full name: index.employee2</div>
 <div class="tip" id="fs17">val check : bool<br /><br />Full name: index.check</div>
+<div class="tip" id="fs18">Multiple items<br />type LiteralAttribute =<br />&#160;&#160;inherit Attribute<br />&#160;&#160;new : unit -&gt; LiteralAttribute<br /><br />Full name: Microsoft.FSharp.Core.LiteralAttribute<br /><br />--------------------<br />new : unit -&gt; LiteralAttribute</div>
+<div class="tip" id="fs19">val csvFile : string<br /><br />Full name: index.csvFile</div>
+<div class="tip" id="fs20">type CsvTest = obj<br /><br />Full name: index.CsvTest</div>
+<div class="tip" id="fs21">val sample : obj<br /><br />Full name: index.sample</div>
+<div class="tip" id="fs22">val dtAndNum : seq&lt;obj * obj&gt;<br /><br />Full name: index.dtAndNum</div>
+<div class="tip" id="fs23">module Seq<br /><br />from Microsoft.FSharp.Collections</div>
+<div class="tip" id="fs24">val map : mapping:(&#39;T -&gt; &#39;U) -&gt; source:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;U&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.map</div>
+<div class="tip" id="fs25">val x : obj</div>
+<div class="tip" id="fs26">val take : count:int -&gt; source:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.take</div>
+<div class="tip" id="fs27">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
+<div class="tip" id="fs28">Multiple items<br />val seq : sequence:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.Operators.seq<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.seq&lt;_&gt;</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
@@ -135,38 +146,128 @@
 </ul>
 </section>
 <section >
+<section >
 <h3>Libraries/Tools</h3>
 <ul>
 <li>All the .NET BCL and</li>
 <li>
 Some personal picks
 <ul>
-<li><a href="https://fsprojects.github.io/Paket/index.html">Paket</a></li>
-<li><a href="http://fsharp.github.io/FAKE/">Fake</a></li>
-<li><a href="https://github.com/haf/expecto">Expecto</a></li>
-<li><a href="http://fsharp.github.io/FSharp.Data/">FSharp.Data</a> and <a href="http://fsprojects.github.io/SQLProvider/">SQLProvider</a></li>
-<li><a href="https://numerics.mathdotnet.com/">MathNet.Numerics</a></li>
-<li><a href="http://reedcopsey.github.io/Gjallarhorn/">Gjallarhorn</a></li>
-<li><a href="http://www.oxyplot.org/">Oxyplot</a></li>
-<li><a href="http://fsprojects.github.io/Argu/">Argu</a> and <a href="https://github.com/gsscoder/commandline">CommandLine</a></li>
-<li><a href="http://benchmarkdotnet.org/">BenchmarkDotNet</a></li>
-<li><a href="http://www.filehelpers.net/">FileHelpers</a></li>
+<li><a href="https://fsprojects.github.io/Paket/index.html">Paket</a>: dependency management</li>
+<li><a href="http://fsharp.github.io/FAKE/">Fake</a>: build tool</li>
+<li><a href="https://github.com/haf/expecto">Expecto</a>: testing</li>
+<li><a href="http://fsharp.github.io/FSharp.Data/">FSharp.Data</a> and <a href="http://fsprojects.github.io/SQLProvider/">SQLProvider</a>: typed data access</li>
+<li><a href="https://numerics.mathdotnet.com/">MathNet.Numerics</a>: numerical/statistical computations</li>
+<li><a href="http://reedcopsey.github.io/Gjallarhorn/">Gjallarhorn</a>: managing mutable state and signals</li>
+<li><a href="http://www.oxyplot.org/">Oxyplot</a>: plotting library</li>
+<li><a href="http://fsprojects.github.io/Argu/">Argu</a> and <a href="https://github.com/gsscoder/commandline">CommandLine</a>: command line parsers</li>
+<li><a href="http://benchmarkdotnet.org/">BenchmarkDotNet</a>: easy micro benchmarking</li>
+<li><a href="http://www.filehelpers.net/">FileHelpers</a>: processing delimited files</li>
 </ul>
 </li>
 </ul>
 </section>
 <section >
-<h3>Resources</h3>
+<h3><img src="images/fake.png" alt="fake" /></h3>
 <ul>
-<li>Docs</li>
-<li>Books</li>
-<li>Slack</li>
-<li>Videos</li>
+<li><strong>Fake:</strong> F# Make, a build tool for .NET</li>
+<li>Integrated DSL in F#</li>
+<li>Run tests, add assembly info, release to nuget via Paket</li>
+</ul>
+<h3><img src="images/paket-logo.png" alt="paket" /></h3>
+<ul>
+<li><strong>Paket:</strong> dependency manager for .NET</li>
+<li>Integrated with nuget but much more reliable</li>
+<li>Can reference source files, github</li>
 </ul>
 </section>
 <section >
-<h3>Show me the code</h3>
-<p><img src="images/fsharp256.png" alt="whatever" /></p>
+<h2>Typed representation of an arbitrary csv file in 3 lines</h2>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp">[&lt;<span onmouseout="hideTip(event, 'fs18', 28)" onmouseover="showTip(event, 'fs18', 28)" class="t">Literal</span>&gt;]
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs19', 29)" onmouseover="showTip(event, 'fs19', 29)" class="i">csvFile</span> <span class="o">=</span> <span class="s">@&quot;c:\tmp\testDeedle.csv&quot;</span>
+<span class="k">type</span> <span onmouseout="hideTip(event, 'fs20', 30)" onmouseover="showTip(event, 'fs20', 30)" class="t">CsvTest</span> <span class="o">=</span> <span class="i">CsvProvider</span><span class="o">&lt;</span><span onmouseout="hideTip(event, 'fs19', 31)" onmouseover="showTip(event, 'fs19', 31)" class="i">csvFile</span><span class="o">&gt;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs21', 32)" onmouseover="showTip(event, 'fs21', 32)" class="i">sample</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs20', 33)" onmouseover="showTip(event, 'fs20', 33)" class="i">CsvTest</span><span class="o">.</span><span class="i">GetSample</span>()
+<span onmouseout="hideTip(event, 'fs21', 34)" onmouseover="showTip(event, 'fs21', 34)" class="i">sample</span><span class="o">.</span><span class="i">Headers</span> <span class="c">// val it : string [] option = Some [|&quot;Date&quot;; &quot;Portfolio&quot;; &quot;BarraID&quot;; &quot;Ret&quot;|]</span>
+
+<span class="c">//val dtAndNum : seq&lt;System.DateTime * decimal&gt;</span>
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs22', 35)" onmouseover="showTip(event, 'fs22', 35)" class="i">dtAndNum</span> <span class="o">=</span> 
+    <span onmouseout="hideTip(event, 'fs21', 36)" onmouseover="showTip(event, 'fs21', 36)" class="i">sample</span><span class="o">.</span><span class="i">Rows</span> 
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs23', 37)" onmouseover="showTip(event, 'fs23', 37)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs24', 38)" onmouseover="showTip(event, 'fs24', 38)" class="f">map</span> (<span class="k">fun</span> <span onmouseout="hideTip(event, 'fs25', 39)" onmouseover="showTip(event, 'fs25', 39)" class="i">x</span> <span class="k">-&gt;</span> (<span onmouseout="hideTip(event, 'fs25', 40)" onmouseover="showTip(event, 'fs25', 40)" class="i">x</span><span class="o">.</span><span class="i">Date</span>,<span onmouseout="hideTip(event, 'fs25', 41)" onmouseover="showTip(event, 'fs25', 41)" class="i">x</span><span class="o">.</span><span class="i">Ret</span>))
+    <span class="o">|&gt;</span> <span onmouseout="hideTip(event, 'fs23', 42)" onmouseover="showTip(event, 'fs23', 42)" class="t">Seq</span><span class="o">.</span><span onmouseout="hideTip(event, 'fs26', 43)" onmouseover="showTip(event, 'fs26', 43)" class="f">take</span> <span class="n">2</span>
+
+<span onmouseout="hideTip(event, 'fs27', 44)" onmouseover="showTip(event, 'fs27', 44)" class="f">printfn</span> <span class="s">&quot;</span><span class="pf">%A</span><span class="s">&quot;</span> <span onmouseout="hideTip(event, 'fs22', 45)" onmouseover="showTip(event, 'fs22', 45)" class="i">dtAndNum</span>
+<span onmouseout="hideTip(event, 'fs28', 46)" onmouseover="showTip(event, 'fs28', 46)" class="i">seq</span> [(<span class="n">2016</span><span class="o">/</span><span class="n">10</span><span class="o">/</span><span class="n">11</span> <span class="n">00</span><span class="o">:</span><span class="n">00</span><span class="o">:</span><span class="n">00</span>, <span class="n">0.0059880M</span>);
+     (<span class="n">2016</span><span class="o">/</span><span class="n">10</span><span class="o">/</span><span class="n">12</span> <span class="n">00</span><span class="o">:</span><span class="n">00</span><span class="o">:</span><span class="n">00</span>, <span class="o">-</span><span class="n">0.003293M</span>)]
+</code></pre></td>
+</tr>
+</table>
+<ul>
+<li>SqlProvider works as a mini-ORM providing the same functionality for databases</li>
+</ul>
+</section>
+<section >
+<h3>SQLProvider</h3>
+</section>
+<section >
+<h3>Argu sample</h3>
+</section>
+</section>
+<section >
+<h3>Resources</h3>
+<ul>
+<li>
+Docs:
+<ul>
+<li><a href="https://docs.microsoft.com/en-us/dotnet/articles/fsharp/">.NET Docs</a></li>
+<li><a href="https://fsharpforfunandprofit.com/">F# for Fun &amp; Profit</a></li>
+<li><a href="http://www.apress.com/us/book/9781484207413">Expert F# 4.0</a></li>
+</ul>
+</li>
+<li>
+Books:
+<ul>
+<li><a href="https://www.manning.com/books/learn-fsharp">Learn F#</a></li>
+<li><a href="https://www.manning.com/books/functional-concurrency-in-dotnet">Functional Concurrency in .NET</a></li>
+</ul>
+</li>
+<li>
+Slack:
+<ul>
+<li><a href="http://foundation.fsharp.org/join">FSharp Slack</a></li>
+<li><a href="https://functionalprogramming.slack.com">F# channel on FP Slack</a></li>
+</ul>
+</li>
+<li>
+Videos:
+<ul>
+<li><a href="https://channel9.msdn.com/blogs/pdc2008/tl11">Channel 9: Intro to F#</a></li>
+<li><a href="https://channel9.msdn.com/blogs/pdc2008/tl11">Channel 9: F# in VS2017</a></li>
+<li><a href="https://youtu.be/E8I19uA-wGY">Functional Design Patterns</a></li>
+</ul>
+</li>
+</ul>
+</section>
+<section >
+<h3>Coding in F#</h3>
+<p><img src="images/favicon-160x160.png" alt="whatever" /></p>
+<iframe src="//giphy.com/embed/aq6Thivv9V9lu?html5=true" width="480" height="272.23880597014925" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/aq6Thivv9V9lu"></a></p>
+<! ### ![Yes!](https://media.giphy.com/media/aq6Thivv9V9lu/giphy.gif)>
 </section>
 
 
