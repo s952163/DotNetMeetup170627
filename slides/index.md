@@ -10,15 +10,14 @@
 
 *** 
 
-### FP envy
+#### FP Envy
+!["FP Envy"](https://media.giphy.com/media/OcsIqNQaWLCBa/giphy.gif)  
 
 * Generics
 * LINQ
 * Async
 * Tuples
 * Pattern Matching
-
-"I want what they have!"
 
 ***
 
@@ -27,7 +26,7 @@
     let nums = [1 .. 10]  
     let sumx2 xs =  
         xs |> List.map (fun x -> x * x)  
-        |> List.sum
+           |> List.sum
     let xs' = sumx2 nums
 
     type MyRec = {
@@ -39,6 +38,16 @@
     let employee2 = {name="John Doe"; id=99}
     let check = employee1 = employee2
     check // val check : bool = true
+
+***
+
+### What?
+![Huh?](https://media3.giphy.com/media/5wWf7H89PisM6An8UAU/giphy.gif)
+
+* No nulls
+* Immutability by default
+* Very good type inference with white-space based syntax
+* Light-weight type-system suitable for domain/type driven design
 
 ***
 
