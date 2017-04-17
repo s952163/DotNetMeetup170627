@@ -106,11 +106,31 @@
 * SqlProvider works as a mini-ORM providing the same functionality for databases
 
 --- 
-### SQLProvider
+### Argu sample
+> A declarative CLI/XML parser, using Discriminated Unions to describe the parameters.  
+
+
+    type Arguments =
+    | [<Mandatory>] Path of path:string
+    | [<Mandatory>] File of file:string
+    | DryRun
+                   
+                   (*...*)
+    
+    let results = parser.ParseCommandLine argv
+    
+    let path = results.GetResult <@ Path @>
+    let file = results.GetResult <@ File @>
+    let dryrun = results.Contains <@ DryRun @>
+
+    match dryrun with 
+    | true -> Library.printDebug (path,file)
+    | false -> Library.readCsvFile <| Path.Combine(path,file)
+
 
 ---
 
-### Argu sample
+### SQLProvider
 
 
 
