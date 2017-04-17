@@ -5,8 +5,8 @@
 - transition : default
 
 ***
-
-### ![image](images/iHearFsharp1.png)
+## Make today an easy day! 
+## ![image](images/iHearFsharp1.png)
 
 > Third most loved language in the SO 2016 Developer Survey. 
 
