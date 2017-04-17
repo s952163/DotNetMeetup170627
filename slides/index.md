@@ -134,7 +134,7 @@
 
 > Typed access to the database schema
 
-![sqlprovider](images/sqlprovider.png)
+![sqlpr](images/sqlprovider2.png)
 
 ***
 
