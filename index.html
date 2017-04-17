@@ -74,6 +74,14 @@
 <div class="tip" id="fs26">val take : count:int -&gt; source:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.Seq.take</div>
 <div class="tip" id="fs27">val printfn : format:Printf.TextWriterFormat&lt;&#39;T&gt; -&gt; &#39;T<br /><br />Full name: Microsoft.FSharp.Core.ExtraTopLevelOperators.printfn</div>
 <div class="tip" id="fs28">Multiple items<br />val seq : sequence:seq&lt;&#39;T&gt; -&gt; seq&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Core.Operators.seq<br /><br />--------------------<br />type seq&lt;&#39;T&gt; = System.Collections.Generic.IEnumerable&lt;&#39;T&gt;<br /><br />Full name: Microsoft.FSharp.Collections.seq&lt;_&gt;</div>
+<div class="tip" id="fs29">type Arguments =<br />&#160;&#160;| Path of path: string<br />&#160;&#160;| File of file: string<br />&#160;&#160;| DryRun<br /><br />Full name: index.Arguments</div>
+<div class="tip" id="fs30">union case Arguments.Path: path: string -&gt; Arguments</div>
+<div class="tip" id="fs31">union case Arguments.File: file: string -&gt; Arguments</div>
+<div class="tip" id="fs32">union case Arguments.DryRun: Arguments</div>
+<div class="tip" id="fs33">val results : obj<br /><br />Full name: index.results</div>
+<div class="tip" id="fs34">val path : obj<br /><br />Full name: index.path</div>
+<div class="tip" id="fs35">val file : obj<br /><br />Full name: index.file</div>
+<div class="tip" id="fs36">val dryrun : bool<br /><br />Full name: index.dryrun</div>
 
         <!-- Any section element inside of this container is displayed as a slide -->
         <div class="slides">
@@ -142,7 +150,7 @@
 <li>Very good type inference with white-space based syntax</li>
 <li>Light-weight type-system suitable for domain/type driven design</li>
 <li>REPL</li>
-<li>Great Visual Studio and VSCode integrations</li>
+<li>Great Visual Studio (2015/2017) and VSCode (ionide-fsharp) integration</li>
 </ul>
 </section>
 <section >
@@ -222,10 +230,53 @@ Some personal picks
 </ul>
 </section>
 <section >
-<h3>SQLProvider</h3>
+<h3>Argu sample</h3>
+<blockquote>
+<p>A declarative CLI/XML parser, using Discriminated Unions to describe the parameters.</p>
+</blockquote>
+<table class="pre"><tr><td class="lines"><pre class="fssnip"><span class="l"> 1: </span>
+<span class="l"> 2: </span>
+<span class="l"> 3: </span>
+<span class="l"> 4: </span>
+<span class="l"> 5: </span>
+<span class="l"> 6: </span>
+<span class="l"> 7: </span>
+<span class="l"> 8: </span>
+<span class="l"> 9: </span>
+<span class="l">10: </span>
+<span class="l">11: </span>
+<span class="l">12: </span>
+<span class="l">13: </span>
+<span class="l">14: </span>
+<span class="l">15: </span>
+<span class="l">16: </span>
+</pre></td>
+<td class="snippet"><pre class="fssnip highlighted"><code lang="fsharp"><span class="k">type</span> <span onmouseout="hideTip(event, 'fs29', 47)" onmouseover="showTip(event, 'fs29', 47)" class="t">Arguments</span> <span class="o">=</span>
+| [&lt;<span class="i">Mandatory</span>&gt;] <span onmouseout="hideTip(event, 'fs30', 48)" onmouseover="showTip(event, 'fs30', 48)" class="p">Path</span> <span class="k">of</span> <span class="i">path</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs11', 49)" onmouseover="showTip(event, 'fs11', 49)" class="t">string</span>
+| [&lt;<span class="i">Mandatory</span>&gt;] <span onmouseout="hideTip(event, 'fs31', 50)" onmouseover="showTip(event, 'fs31', 50)" class="p">File</span> <span class="k">of</span> <span class="i">file</span><span class="o">:</span><span onmouseout="hideTip(event, 'fs11', 51)" onmouseover="showTip(event, 'fs11', 51)" class="t">string</span>
+| <span onmouseout="hideTip(event, 'fs32', 52)" onmouseover="showTip(event, 'fs32', 52)" class="p">DryRun</span>
+               
+               <span class="c">(*...*)</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs33', 53)" onmouseover="showTip(event, 'fs33', 53)" class="i">results</span> <span class="o">=</span> <span class="i">parser</span><span class="o">.</span><span class="i">ParseCommandLine</span> <span class="i">argv</span>
+
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs34', 54)" onmouseover="showTip(event, 'fs34', 54)" class="i">path</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 55)" onmouseover="showTip(event, 'fs33', 55)" class="i">results</span><span class="o">.</span><span class="i">GetResult</span> &lt;@ <span onmouseout="hideTip(event, 'fs30', 56)" onmouseover="showTip(event, 'fs30', 56)" class="i">Path</span> @&gt;
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs35', 57)" onmouseover="showTip(event, 'fs35', 57)" class="i">file</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 58)" onmouseover="showTip(event, 'fs33', 58)" class="i">results</span><span class="o">.</span><span class="i">GetResult</span> &lt;@ <span onmouseout="hideTip(event, 'fs31', 59)" onmouseover="showTip(event, 'fs31', 59)" class="i">File</span> @&gt;
+<span class="k">let</span> <span onmouseout="hideTip(event, 'fs36', 60)" onmouseover="showTip(event, 'fs36', 60)" class="i">dryrun</span> <span class="o">=</span> <span onmouseout="hideTip(event, 'fs33', 61)" onmouseover="showTip(event, 'fs33', 61)" class="i">results</span><span class="o">.</span><span class="i">Contains</span> &lt;@ <span onmouseout="hideTip(event, 'fs32', 62)" onmouseover="showTip(event, 'fs32', 62)" class="i">DryRun</span> @&gt;
+
+<span class="k">match</span> <span onmouseout="hideTip(event, 'fs36', 63)" onmouseover="showTip(event, 'fs36', 63)" class="i">dryrun</span> <span class="k">with</span> 
+| <span class="k">true</span> <span class="k">-&gt;</span> <span class="i">Library</span><span class="o">.</span><span class="i">printDebug</span> (<span onmouseout="hideTip(event, 'fs34', 64)" onmouseover="showTip(event, 'fs34', 64)" class="i">path</span>,<span onmouseout="hideTip(event, 'fs35', 65)" onmouseover="showTip(event, 'fs35', 65)" class="i">file</span>)
+| <span class="k">false</span> <span class="k">-&gt;</span> <span class="i">Library</span><span class="o">.</span><span class="i">readCsvFile</span> <span class="o">&lt;|</span> <span onmouseout="hideTip(event, 'fs30', 66)" onmouseover="showTip(event, 'fs30', 66)" class="p">Path</span><span class="o">.</span><span class="i">Combine</span>(<span onmouseout="hideTip(event, 'fs34', 67)" onmouseover="showTip(event, 'fs34', 67)" class="i">path</span>,<span onmouseout="hideTip(event, 'fs35', 68)" onmouseover="showTip(event, 'fs35', 68)" class="i">file</span>)
+</code></pre></td>
+</tr>
+</table>
 </section>
 <section >
-<h3>Argu sample</h3>
+<h3>SQLProvider</h3>
+<blockquote>
+<p>Typed access to the database schema</p>
+</blockquote>
+<p><img src="images/sqlprovider.png" alt="sqlprovider" /></p>
 </section>
 </section>
 <section >
