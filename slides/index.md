@@ -117,9 +117,10 @@
 ***
 
 ### Resources
-* Docs:
+* Web:
     * [.NET Docs](https://docs.microsoft.com/en-us/dotnet/articles/fsharp/)
     * [F# for Fun & Profit](https://fsharpforfunandprofit.com/)
+    * [F# Guide for C# devs](http://connelhooley.uk/blog/2017/04/10/f-sharp-guide)
 * Books:
     * [Expert F# 4.0](http://www.apress.com/us/book/9781484207413)
     * [Learn F#](https://www.manning.com/books/learn-fsharp)
