@@ -154,6 +154,7 @@
     * [Channel 9: Intro to F#](https://channel9.msdn.com/blogs/pdc2008/tl11)
     * [Channel 9: F# in VS2017](https://channel9.msdn.com/blogs/pdc2008/tl11)
     * [Functional Design Patterns](https://youtu.be/E8I19uA-wGY)
+    * [FSharp Exchange 2017](https://skillsmatter.com/explore?q=tag%3Afsharpx)
 
 
 *** 
