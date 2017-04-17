@@ -51,7 +51,7 @@
 * Very good type inference with white-space based syntax
 * Light-weight type-system suitable for domain/type driven design
 * REPL
-* Great Visual Studio and VSCode integrations
+* Great Visual Studio (2015/2017) and VSCode (ionide-fsharp) integration
 
 
 ***
@@ -132,7 +132,9 @@
 
 ### SQLProvider
 
+> Typed access to the database schema
 
+![sqlprovider](images/sqlprovider.png)
 
 ***
 
