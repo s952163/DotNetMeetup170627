@@ -1,4 +1,4 @@
-- title : How I learned to love Functional Programming
+- title : Makr today an easy day or How I learned to love Functional Programming
 - description : Introduction to F#
 - author : Peter Veres
 - theme : night
