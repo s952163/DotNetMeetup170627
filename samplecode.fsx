@@ -14,7 +14,7 @@ type MyRec = {
     id : int
 }
 
-let employee1 = {name="John Doe"; id=99}
+let employee1 = {MyRec.name="John Doe"; id=99}
 let employee2 = {name="John Doe"; id=99}
 let check = employee1 = employee2
 
@@ -36,3 +36,7 @@ printfn "%A" dtAndNum
 module TestModule =
     let newfunc x =
         x + "a"
+
+let f x (g : unit -> unit) : unit =
+   printf x
+
