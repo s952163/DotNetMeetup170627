@@ -47,3 +47,14 @@ xs
 |> List.choose (function  
                 | x when x % 2 = 0 -> Some (x * 2)
                 | _ -> None )
+
+System.IntPtr.Size // to check for 32-bit / 64-bit
+
+
+// Check Option.map
+
+let xs1 = [Some(3);None;Some(5);None;Some(10)]
+
+let xs2 = Option.map (fun x -> x * 2) 
+
+xs1 |> List.map (Option.map (fun x -> x *2)) |> ignore
