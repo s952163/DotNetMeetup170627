@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Suave</id>
+    <version>1.1.2</version>
+    <title>Suave</title>
+    <authors>Ademar Gonzalez, Henrik Feldt</authors>
+    <owners>Ademar Gonzalez, Henrik Feldt</owners>
+    <licenseUrl>https://github.com/SuaveIO/Suave/blob/master/COPYING</licenseUrl>
+    <projectUrl>http://suave.io</projectUrl>
+    <iconUrl>https://raw.githubusercontent.com/SuaveIO/resources/master/images/head_trans.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Suave is a simple web development F# library providing a lightweight web server and a set of combinators to manipulate route flow and task composition.</description>
+    <releaseNotes>Release Notes:
+
+ * v1.1.2
+ * [tests] improving combinator tests for headers
+ * [combinators] case-insensitive headers
+ * [combinators] adding setHeaderValue function</releaseNotes>
+    <copyright>Ademar Gonzalez, Henrik Feldt</copyright>
+    <language>en-GB</language>
+    <dependencies>
+      <dependency id="FSharp.Core" version="3.1.2.5" />
+    </dependencies>
+  </metadata>
+</package>
