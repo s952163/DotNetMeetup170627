@@ -18,6 +18,8 @@
 ## Serverless meets F# and Bitcoin
 !["It just works"](https://media.giphy.com/media/yJHN2CCfPIw4o/giphy.gif)  
 
+' What can Functions be used for?
+
 ***
 
 ## Azure Functions  
@@ -33,6 +35,9 @@
 
 > pipeline of small stateless functions  
 
+' Easy to do Azure Functions in F#
+' How easy?
+
 ***
 
 ## Super easy to get started
@@ -45,6 +50,7 @@
 
 > Show me the code
 
+' Show me the money
 
 *** 
 
@@ -68,6 +74,11 @@
         {PartitionKey = "Bitcoin"; RowKey = time.ToString("yyyy-MM-ddTHH:mm:ss"); 
          Name = fx.ToString()}
 
+' F# code that defines a type: BitcoinRate, this is a simple DTO
+' and a function: getBitCoinPx()
+' this function polls the Bitcoin API, perses the json, and returns a BitcoinRate record
+' Show the output of the function in VS2017 or VSCode
+
 ***
 
 ### Azure will execute the .fsx file, so the exact same code will be running:
@@ -82,9 +93,12 @@ The return type of this function is `unit -> BitcoinRate`
 
 > Where does it go?
 
+' Since our function is stateless, how can we store the current Bitcoin price??
+' Yes, Azure Table Storage!
+
 ***
 
-## Azure table storage
+## Our second Function: Azure table storage
 
     let Run(bitcoinRate: BitcoinRate, 
             bitcoinOut: ICollector<BitcoinRate>, log: TraceWriter) =
@@ -93,6 +107,9 @@ The return type of this function is `unit -> BitcoinRate`
 
 
 !["Yup"](https://media.giphy.com/media/r6ZpVBue6DGc8/giphy.gif)
+
+' This is not strictly necessary, however it is possible to setup multiple functions watching the same queue, doing different things
+' So the output of the first function goes into the queue (or ServiceBus), where another function is triggered, that places the item in the queue into Storage
 
 ***
 
@@ -105,7 +122,8 @@ The return type of this function is `unit -> BitcoinRate`
 > so no need to run your own notebook server
 > or to install F# or python 
 
-    
+' So what can we do with all of this?
+' It's data, let's analyze it    
     
 ***
 
@@ -121,26 +139,34 @@ The return type of this function is `unit -> BitcoinRate`
     queried_entities = table_service.query_entities('bitcoinTable', 
         filter="RowKey gt '2017-06-16T14:26:00' and PartitionKey eq 'Bitcoin'")
 
+' this code will return 1000 rows
+' to return everything process the continuation token in  a loop
+
 ***
 
 ## Literate Programming
 
 ![image](images/jupyter2.png)
- 
+
+' all kinds of analysis can be performed interactively with rapid prototyping
+' finally it can be put into production
+' Last slide list some useful F# resources
+
 ***
 
-### Libraries/Tools
+### Libraries/Tools/Resources
 
 * All the .NET BCL and 
 * Some personal picks
+    - [F# Slack](http://foundation.fsharp.org/join): Quite active and friendly
     - [Fable](http://fable.io/): F# to JavaScript (you can be proud of)
     - [FSharp.Data](http://fsharp.github.io/FSharp.Data/) and [SQLProvider](http://fsprojects.github.io/SQLProvider/): micro-ORM/typed data access
-    - [Suave](https://suave.io/) an async micro web-server
+    - [Suave](https://suave.io/): an async micro web-server
     - [Paket](https://fsprojects.github.io/Paket/index.html): dependency management
     - [Fake](http://fsharp.github.io/FAKE/): build tool
     - [Expecto](https://github.com/haf/expecto): first-class tests
     - [MathNet.Numerics](https://numerics.mathdotnet.com/): numerical/statistical computations
-    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/): managing mutable state and signals)
+    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/): managing mutable state and signals
     - [Oxyplot](http://www.oxyplot.org/): plotting library
     - [Argu](http://fsprojects.github.io/Argu/) and [CommandLine](https://github.com/gsscoder/commandline): command line parsers
     - [BenchmarkDotNet](http://benchmarkdotnet.org/): easy micro benchmarking
