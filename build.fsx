@@ -12,7 +12,7 @@
 let gitOwner = "s952163"
 let gitHome = "https://github.com/" + gitOwner
 // The name of the project on GitHub
-let gitProjectName = "DotNetMeetUp170418"
+let gitProjectName = "DotNetMeetUp170627"
 // The name of the GitHub repo subdirectory to publish slides to
 let gitSubDir = ""
 
