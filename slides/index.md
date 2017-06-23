@@ -84,7 +84,7 @@
 
 ### Azure will execute the .fsx file, so the exact same code will be running:
 
-![image](images/azureFunc4.jpg)
+![image](images/azurefunctions.jpg)
 
 ***
 
@@ -114,6 +114,14 @@ The return type of this function is `unit -> BitcoinRate`
 
 ***
 
+### To summarize: with two small functions we built a small pipeline:  
+
+ - Every x minutes go to the service  
+ - Parse the JSON response and put it into a queue for further processing  
+ - Store the result  
+
+***
+
 ## Part 2: Azure Notebooks
 
 ![Huh](https://media.giphy.com/media/cMVgEhDeKzPwI/giphy.gif)
@@ -139,6 +147,8 @@ The return type of this function is `unit -> BitcoinRate`
     # Query the table by filtering on the PartitionKey and other items
     queried_entities = table_service.query_entities('bitcoinTable', 
         filter="RowKey gt '2017-06-16T14:26:00' and PartitionKey eq 'Bitcoin'")
+
+> Essentially with one line of code we can access the data, and further process it
 
 ' this code will return 1000 rows
 ' to return everything process the continuation token in  a loop
