@@ -19,6 +19,7 @@
 !["It just works"](https://media.giphy.com/media/yJHN2CCfPIw4o/giphy.gif)  
 
 ' What can Functions be used for?
+' Show /fsi bot on Slack
 
 ***
 
@@ -42,7 +43,7 @@
 
 ## Super easy to get started
 
-![image](images/AzureFunctStart1.png)
+![image](images/AzureFunctStart2.png)
 
 ***
 
