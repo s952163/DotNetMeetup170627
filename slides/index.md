@@ -9,6 +9,9 @@
 ## ![image](images/fsharp-functions3.png)
 
 > Less infrastructure + less code. 
+' We continue our easy day series by looking at Azure Functions.
+' For the previous slides see the link from the April Meetup
+' Or directly: https://s952163.github.io/DotNetMeetup170418/
 
 *** 
 
@@ -47,9 +50,9 @@
 
     [<CLIMutable>]
     type BitcoinRate = {
-    PartitionKey: string
-    RowKey: string
-    Name: string
+        PartitionKey: string
+        RowKey: string
+        Name: string
     }
 
     let getBitCoinPx() = 
@@ -67,35 +70,83 @@
 
 ***
 
-### What?
-![Huh?](https://media3.giphy.com/media/5wWf7H89PisM6An8UAU/giphy.gif)
+### Azure will execute the .fsx file, so the exact same code will be running:
 
-* No nulls
-* Immutability by default
-* Very good type inference with white-space based syntax
-* Light-weight type-system suitable for domain/type driven design
-* REPL
-* Great Visual Studio (2015/2017) and VSCode (ionide-fsharp) integration
+![image](images/AzureFunc2.png)
+
+***
+
+The return type of this function is `unit -> BitcoinRate`
+
+!["Really?"](https://media.giphy.com/media/zYEg3iFhP7Ily/giphy.gif)
+
+> Where does it go?
+
+***
+
+## Azure table storage
+
+    let Run(bitcoinRate: BitcoinRate, 
+            bitcoinOut: ICollector<BitcoinRate>, log: TraceWriter) =
+        log.Info(sprintf "F# Queue trigger function processed: '%A'" bitcoinRate)
+        bitcoinOut.Add(bitcoinRate)
 
 
+!["Yup"](https://media.giphy.com/media/r6ZpVBue6DGc8/giphy.gif)
+
+***
+
+## Part 2: Azure Notebooks
+
+![Huh](https://media.giphy.com/media/cMVgEhDeKzPwI/giphy.gif)
+
+[Azure](https://notebooks.azure.com/) supports F#, Python and R in [Jupyter Notebooks](http://jupyter.org/)
+
+> so no need to run your own notebook server
+> or to install F# or python 
+
+    
+    
+***
+
+## Python code below!
+
+    from azure.storage.table import TableService
+    # Set up credentials and Connect to the table using our key  
+    key = 'verySecret'
+    serviceName = 'bitcoinfunabcb'
+    table_service = TableService(serviceName, key)
+
+    # Query the table by filtering on the PartitionKey and other items
+    queried_entities = table_service.query_entities('bitcoinTable', 
+        filter="RowKey gt '2017-06-16T14:26:00' and PartitionKey eq 'Bitcoin'")
+
+***
+
+## Literate Programming
+
+![image](images/jupyter2.png)
+ 
 ***
 
 ### Libraries/Tools
 
 * All the .NET BCL and 
 * Some personal picks
+    - [Fable](http://fable.io/): F# to JavaScript (you can be proud of)
+    - [FSharp.Data](http://fsharp.github.io/FSharp.Data/) and [SQLProvider](http://fsprojects.github.io/SQLProvider/): micro-ORM/typed data access
+    - [Suave](https://suave.io/) an async micro web-server
     - [Paket](https://fsprojects.github.io/Paket/index.html): dependency management
     - [Fake](http://fsharp.github.io/FAKE/): build tool
-    - [Expecto](https://github.com/haf/expecto): testing
-    - [FSharp.Data](http://fsharp.github.io/FSharp.Data/) and [SQLProvider](http://fsprojects.github.io/SQLProvider/): typed data access
+    - [Expecto](https://github.com/haf/expecto): first-class tests
     - [MathNet.Numerics](https://numerics.mathdotnet.com/): numerical/statistical computations
-    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/): managing mutable state and signals
+    - [Gjallarhorn](http://reedcopsey.github.io/Gjallarhorn/): managing mutable state and signals)
     - [Oxyplot](http://www.oxyplot.org/): plotting library
     - [Argu](http://fsprojects.github.io/Argu/) and [CommandLine](https://github.com/gsscoder/commandline): command line parsers
     - [BenchmarkDotNet](http://benchmarkdotnet.org/): easy micro benchmarking
     - [FileHelpers](http://www.filehelpers.net/): processing delimited files
 
----
+***
 
 ### ![fake](images/fake.png)
 * **Fake:** F# Make, a build tool for .NET  
@@ -107,58 +158,6 @@
 * Integrated with nuget but much more reliable
 * Can reference source files, github
 
----
-
-## Typed representation of an arbitrary csv file in 3 lines
-
-    [<Literal>]
-    let csvFile = @"c:\tmp\testDeedle.csv"
-    type CsvTest = CsvProvider<csvFile>
-    let sample = CsvTest.GetSample()
-    sample.Headers // val it : string [] option = Some [|"Date"; "Portfolio"; "BarraID"; "Ret"|]
-    
-    //val dtAndNum : seq<System.DateTime * decimal>
-    let dtAndNum = 
-        sample.Rows 
-        |> Seq.map (fun x -> (x.Date,x.Ret))
-        |> Seq.take 2
-
-    printfn "%A" dtAndNum
-    seq [(2016/10/11 00:00:00, 0.0059880M);
-         (2016/10/12 00:00:00, -0.003293M)]
-
-* SqlProvider works as a mini-ORM providing the same functionality for databases
-
---- 
-### Argu sample
-> A declarative CLI/XML parser, using Discriminated Unions to describe the parameters.  
-
-
-    type Arguments =
-    | [<Mandatory>] Path of path:string
-    | [<Mandatory>] File of file:string
-    | DryRun
-                   
-                   (*...*)
-    
-    let results = parser.ParseCommandLine argv
-    
-    let path = results.GetResult <@ Path @>
-    let file = results.GetResult <@ File @>
-    let dryrun = results.Contains <@ DryRun @>
-
-    match dryrun with 
-    | true -> Library.printDebug (path,file)
-    | false -> Library.readCsvFile <| Path.Combine(path,file)
-
-
----
-
-### SQLProvider
-
-> Typed access to the database schema
-
-![sqlpr](images/sqlprovider2.png)
 
 ***
 
