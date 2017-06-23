@@ -1,45 +1,69 @@
-- title : Makr today an easy day or How I learned to love Functional Programming
-- description : Introduction to F#
+- title : Serverless meets F# and Bitcoin
+- description : Azure Functions in F#
 - author : Peter Veres
 - theme : night
 - transition : default
 
 ***
-## Make today an easy day! 
-## ![image](images/iHearFsharp1.png)
+## Make today an easy day!
+## ![image](images/fsharp-functions3.png)
 
-> Third most loved language in the SO 2016 Developer Survey. 
+> Less infrastructure + less code. 
 
 *** 
 
-#### FP Envy
-!["FP Envy"](https://media.giphy.com/media/OcsIqNQaWLCBa/giphy.gif)  
-
-* Generics
-* LINQ
-* Async
-* Tuples
-* Pattern Matching
+## Serverless meets F# and Bitcoin
+!["It just works"](https://media.giphy.com/media/yJHN2CCfPIw4o/giphy.gif)  
 
 ***
 
-> Functional Programming is great
+## Azure Functions  
 
-    let nums = [1 .. 10]  
-    let sumx2 xs =  
-        xs |> List.map (fun x -> x * x)  
-           |> List.sum
-    let xs' = sumx2 nums
+- Great for short, non-memory intensive tasks that need to be triggered by:  
 
-    type MyRec = {
-        name : string
-        id : int
+> timer, queue, http
+
+- easy to hook  up to webapps, and leverage storage on Azure, will auto-scale
+- No need to set up a VM or maintain a server
+- Out of the box support for F#, fsx and compiled code (upload your dll, reference nuget packages)
+-  Azure Functions are language agnostic but **F#** syntax is a natural fit 
+
+> pipeline of small stateless functions  
+
+***
+
+## Super easy to get started
+
+![image](images/AzureFunctStart1.png)
+
+***
+
+!["Show Me!"](https://media.giphy.com/media/3o6ZsWd5MMMEk16M7K/giphy.gif)
+
+> Show me the code
+
+
+*** 
+
+    [<CLIMutable>]
+    type BitcoinRate = {
+    PartitionKey: string
+    RowKey: string
+    Name: string
     }
 
-    let employee1 = {name="John Doe"; id=99}
-    let employee2 = {name="John Doe"; id=99}
-    let check = employee1 = employee2
-    check // val check : bool = true
+    let getBitCoinPx() = 
+
+        let url = """http://api.coindesk.com/v1/bpi/currentprice/USD.json"""
+        use client =  new WebClient()
+        let result = client.DownloadString(url)
+
+        let json = JsonValue.Parse(result)
+        let fx = (json?bpi?USD?rate_float).AsFloat()                                  
+        let time = (json?time?updatedISO).AsDateTime()
+
+        {PartitionKey = "Bitcoin"; RowKey = time.ToString("yyyy-MM-ddTHH:mm:ss"); 
+         Name = fx.ToString()}
 
 ***
 
