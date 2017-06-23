@@ -43,7 +43,7 @@
 
 ## Super easy to get started
 
-![image](images/AzureFunctStart2.png)
+![image](images/azureFunctStart2.png)
 
 ***
 
