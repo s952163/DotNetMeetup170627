@@ -212,6 +212,14 @@ So the output of the first function goes into the queue (or ServiceBus), where a
 </aside>
 </section>
 <section >
+<h3>To summarize: with two small functions we built a small pipeline:</h3>
+<ul>
+<li>Every x minutes go to the service</li>
+<li>Parse the JSON response and put it into a queue for further processing</li>
+<li>Store the result</li>
+</ul>
+</section>
+<section >
 <h2>Part 2: Azure Notebooks</h2>
 <p><img src="https://media.giphy.com/media/cMVgEhDeKzPwI/giphy.gif" alt="Huh" /></p>
 <p><a href="https://notebooks.azure.com/">Azure</a> supports F#, Python and R in <a href="http://jupyter.org/">Jupyter Notebooks</a></p>
