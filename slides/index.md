@@ -43,7 +43,7 @@
 
 ## Super easy to get started
 
-![image](images/azureFunctStart2.png)
+![image](images/azureFunctStart3.jpg)
 
 ***
 
@@ -84,7 +84,7 @@
 
 ### Azure will execute the .fsx file, so the exact same code will be running:
 
-![image](images/AzureFunc2.png)
+![image](images/azureFunc4.jpg)
 
 ***
 
