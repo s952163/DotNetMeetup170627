@@ -101,13 +101,15 @@ The return type of this function is `unit -> BitcoinRate`
 
 ## Our second Function: Azure table storage
 
+!["Yup"](https://media.giphy.com/media/r6ZpVBue6DGc8/giphy.gif)
+
     let Run(bitcoinRate: BitcoinRate, 
             bitcoinOut: ICollector<BitcoinRate>, log: TraceWriter) =
         log.Info(sprintf "F# Queue trigger function processed: '%A'" bitcoinRate)
         bitcoinOut.Add(bitcoinRate)
 
 
-!["Yup"](https://media.giphy.com/media/r6ZpVBue6DGc8/giphy.gif)
+
 
 ' This is not strictly necessary, however it is possible to setup multiple functions watching the same queue, doing different things
 ' So the output of the first function goes into the queue (or ServiceBus), where another function is triggered, that places the item in the queue into Storage
