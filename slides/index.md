@@ -88,7 +88,7 @@
 
 ***
 
-The return type of this function is `unit -> BitcoinRate`
+The type signature of this function is `unit -> BitcoinRate`
 
 !["Really?"](https://media.giphy.com/media/zYEg3iFhP7Ily/giphy.gif)
 
